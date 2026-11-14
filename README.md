@@ -1,4 +1,4 @@
-# CampusCourier Twin
+# CampusCourier
 
 2D occupancy-grid **A\*** pathfinding console for an autonomous campus delivery robot.
 Includes Operations Control (live dynamic re-planning), Topology Studio (grid + node/edge editor) and a Mission Ledger.
