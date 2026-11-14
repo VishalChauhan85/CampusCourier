@@ -16,10 +16,7 @@ import {
   RefreshCw,
   Search,
   BarChart3,
-  Lock,
   LogOut,
-  Eye,
-  EyeOff,
   Plus,
   Minus,
   Maximize2,
@@ -830,80 +827,87 @@ export default function App() {
   // ==========================================================================
   if (!currentUser) {
     return (
-      <div className="min-h-screen w-full flex items-center justify-center bg-[#0b0e13] text-slate-100 font-sans antialiased px-4">
-        <div className="w-full max-w-sm">
-          <div className="flex items-center gap-2.5 mb-8">
-            <div className="w-8 h-8 rounded-md bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center">
-              <Bot className="w-4 h-4 text-cyan-400" />
-            </div>
-            <span className="text-base font-semibold text-white">CampusCourier</span>
-          </div>
+      <div className="min-h-screen w-full bg-[#0e1014] text-[#e9e7e2] font-sans antialiased flex flex-col">
+        <header className="px-8 sm:px-12 pt-8">
+          <span className="text-[15px] font-semibold tracking-tight">CampusCourier</span>
+        </header>
 
-          <h1 className="text-2xl font-semibold text-white">Sign in</h1>
-          <p className="text-sm text-slate-400 mt-1 mb-6">
-            Welcome back. Enter your details to continue.
-          </p>
+        <main className="flex-1 flex items-center justify-center px-6 pb-16">
+          <div className="w-full max-w-[340px]">
+            <h1 className="text-[28px] leading-8 font-semibold tracking-tight">Sign in</h1>
+            <p className="mt-2 text-sm text-[#8d9099]">
+              Use your operator ID or email to open the dispatch console.
+            </p>
 
-          <form onSubmit={handleLoginSubmit} className="space-y-4" noValidate>
-            <div className="grid grid-cols-2 rounded-md bg-[#11161f] p-1 text-sm">
-              {['Fleet Operator', 'System Administrator'].map((role) => (
+            <div className="mt-8 flex gap-6 border-b border-[#23262d] text-sm">
+              {[
+                { value: 'Fleet Operator', label: 'Operator' },
+                { value: 'System Administrator', label: 'Admin' }
+              ].map((r) => (
                 <button
-                  key={role}
+                  key={r.value}
                   type="button"
-                  onClick={() => setLoginRole(role)}
-                  className={`py-1.5 rounded transition-colors cursor-pointer ${
-                    loginRole === role
-                      ? 'bg-[#1e2631] text-white'
-                      : 'text-slate-400 hover:text-slate-200'
+                  onClick={() => setLoginRole(r.value)}
+                  className={`pb-2.5 -mb-px border-b-2 transition-colors cursor-pointer ${
+                    loginRole === r.value
+                      ? 'border-[#e9e7e2] text-[#e9e7e2]'
+                      : 'border-transparent text-[#8d9099] hover:text-[#e9e7e2]'
                   }`}
                 >
-                  {role === 'System Administrator' ? 'Admin' : 'Operator'}
+                  {r.label}
                 </button>
               ))}
             </div>
 
-            <div>
-              <label className="block text-sm text-slate-300 mb-1.5">Email or ID</label>
-              <input
-                type="text"
-                value={loginIdentifier}
-                onChange={(e) => setLoginIdentifier(e.target.value)}
-                autoComplete="username"
-                className="w-full rounded-md bg-[#11161f] border border-[#1e2631] px-3 py-2 text-sm text-white focus:outline-none focus:border-cyan-500"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm text-slate-300 mb-1.5">Password</label>
-              <div className="relative">
+            <form onSubmit={handleLoginSubmit} className="mt-6 space-y-5" noValidate>
+              <div>
+                <label htmlFor="login-id" className="block text-[13px] text-[#8d9099] mb-1.5">
+                  Email or ID
+                </label>
                 <input
+                  id="login-id"
+                  type="text"
+                  value={loginIdentifier}
+                  onChange={(e) => setLoginIdentifier(e.target.value)}
+                  autoComplete="username"
+                  className="w-full h-11 rounded-md bg-[#15171c] border border-[#2a2d35] px-3 text-sm text-[#e9e7e2] outline-none transition-colors focus:border-[#6b7280]"
+                />
+              </div>
+
+              <div>
+                <div className="flex items-center justify-between mb-1.5">
+                  <label htmlFor="login-pw" className="text-[13px] text-[#8d9099]">
+                    Password
+                  </label>
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword((v) => !v)}
+                    className="text-[13px] text-[#8d9099] hover:text-[#e9e7e2] cursor-pointer"
+                  >
+                    {showPassword ? 'Hide' : 'Show'}
+                  </button>
+                </div>
+                <input
+                  id="login-pw"
                   type={showPassword ? 'text' : 'password'}
                   value={loginPassword}
                   onChange={(e) => setLoginPassword(e.target.value)}
                   autoComplete="current-password"
-                  className="w-full rounded-md bg-[#11161f] border border-[#1e2631] pl-3 pr-10 py-2 text-sm text-white focus:outline-none focus:border-cyan-500"
+                  className="w-full h-11 rounded-md bg-[#15171c] border border-[#2a2d35] px-3 text-sm text-[#e9e7e2] outline-none transition-colors focus:border-[#6b7280]"
                 />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword((s) => !s)}
-                  className="absolute right-3 top-2.5 text-slate-500 hover:text-slate-300 cursor-pointer"
-                  aria-label="Toggle password visibility"
-                >
-                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                </button>
               </div>
-            </div>
 
-            {loginError && <p className="text-sm text-red-400">{loginError}</p>}
+              {loginError && <p className="text-[13px] text-[#f08a7e]">{loginError}</p>}
 
-            <button
-              type="submit"
-              className="w-full rounded-md py-2 bg-cyan-600 hover:bg-cyan-500 text-slate-950 font-medium text-sm transition-colors cursor-pointer"
-            >
-              Sign in
-            </button>
-          </form>
-        </div>
+              <button
+                type="submit"
+                className="w-full h-11 rounded-md bg-[#e9e7e2] hover:bg-white text-[#0e1014] text-sm font-medium transition-colors cursor-pointer"
+              >
+                Continue
+              </button>
+            </form>
+          </div>
+        </main>
       </div>
     );
   }
