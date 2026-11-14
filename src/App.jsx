@@ -41,7 +41,6 @@ import {
 import { createEmptyGrid, carveCorridorLine, computeEuclideanWeight } from './utils/grid.js';
 import { buildDefaultMaps } from './utils/maps.js';
 import { runGridAStar, validateTopologyAndGrid } from './utils/astar.js';
-import LoginGridPreview from './components/LoginGridPreview.jsx';
 
 const STORAGE_KEY = 'cc_grid_maps_v4';
 
@@ -831,14 +830,9 @@ export default function App() {
   // ==========================================================================
   if (!currentUser) {
     return (
-      <div className="min-h-screen w-full grid grid-cols-1 lg:grid-cols-12 bg-[#0b0e13] text-slate-100 font-sans antialiased">
-        {/* LEFT PANEL: Live 2D Occupancy Grid Preview */}
-        <div className="hidden lg:block lg:col-span-7 h-screen border-r border-[#1e2631]">
-          <LoginGridPreview map={maps[0]} />
-        </div>
-
-        {/* RIGHT PANEL: Authentication Workspace */}
-        <div className="lg:col-span-5 min-h-screen bg-[#11161f] flex flex-col justify-between p-8 sm:p-12 lg:p-14">
+      <div className="min-h-screen w-full flex justify-center bg-[#11161f] text-slate-100 font-sans antialiased">
+        {/* Authentication Workspace */}
+        <div className="w-full max-w-xl min-h-screen flex flex-col justify-between p-8 sm:p-12">
           <div className="flex items-center justify-between border-b border-[#1e2631] pb-6">
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 bg-cyan-500/10 border border-cyan-500/40 flex items-center justify-center">

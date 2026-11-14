@@ -12,8 +12,6 @@ src/
 ├── main.jsx                      # entry point
 ├── index.css                     # Tailwind directives
 ├── App.jsx                       # login, operations, studio, ledger views
-├── components/
-│   └── LoginGridPreview.jsx      # animated grid on the login screen
 └── utils/
     ├── grid.js                   # grid helpers (empty grid, corridor carving, weights)
     ├── maps.js                   # default campus maps (SEC-01, SEC-02)
