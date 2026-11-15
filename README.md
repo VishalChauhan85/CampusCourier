@@ -45,38 +45,6 @@ The system simulates a campus environment using an occupancy grid where a virtua
 | A* Algorithm | Pathfinding and navigation |
 | Browser localStorage | Local map persistence |
 
-## 📁 Project Structure
-
-```text
-CampusCourier-Twin/
-│
-├── src/
-│   ├── main.jsx
-│   │   └── Application entry point
-│   │
-│   ├── index.css
-│   │   └── Tailwind CSS directives
-│   │
-│   ├── App.jsx
-│   │   └── Login, Operations Control,
-│   │       Topology Studio and Mission Ledger
-│   │
-│   └── utils/
-│       ├── grid.js
-│       │   └── Grid helpers, corridor carving
-│       │       and path weights
-│       │
-│       ├── maps.js
-│       │   └── Default campus maps (SEC-01, SEC-02)
-│       │
-│       └── astar.js
-│           └── A* pathfinding engine
-│               and topology validation
-│
-├── package.json
-├── index.html
-└── README.md
-```
 
 ## 🚀 Getting Started
 
