@@ -1,4 +1,4 @@
-# CampusCourier Twin 🚚
+# CampusCourier Twin
 
 **A Digital Twin-Based Autonomous Campus Delivery & Navigation System**
 
